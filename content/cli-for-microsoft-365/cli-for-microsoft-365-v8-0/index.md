@@ -1,6 +1,6 @@
 ---
 title: CLI for Microsoft 365 v8
-date: 2024-08-01T06:00:00.000Z
+date: 2024-07-01T06:00:00.000Z
 author: Arjun Menon
 githubname: arjunumenon
 categories:
@@ -10,10 +10,11 @@ images:
 tags:
   - CLI for Microsoft 365
   - SharePoint
-  - SharePoint Framework (SPFx)
-  - Power Platform
+  - Microsoft Teams
+  - Microsoft Viva
+  - Microsoft Entra
 type: popular
-lastmod: 2024-07-27T13:17:53.499Z
+lastmod: 2024-07-28T07:35:01.150Z
 ---
 
 We've just published a new major version of the CLI for Microsoft 365 with new commands for working with and managing Microsoft 365 and SharePoint Framework projects on any platform.
@@ -40,14 +41,14 @@ Once a year we take the opportunity to look at all of the functionality that we 
 
 #### Breaking changes in a nutshell
 
-The endpoint that we are using in the command `spo group member add` is changed. With this change some of the output which the command outputs is also changed. The return values changed include properties like `DisplayName`, `User`, etc. You can get more details from [here](https://pnp.github.io/cli-microsoft365/v8-upgrade-guidance#updated-command-output-of-spo-group-member-add).
+The endpoint that we are using in the command [`spo group member add`](https://pnp.github.io/cli-microsoft365/cmd/spo/group/group-member-add/) is changed. With this change some of the output is also changed. The return values changed include properties like `DisplayName`, `User`, etc. You can get more details from [here](https://pnp.github.io/cli-microsoft365/v8-upgrade-guidance#updated-command-output-of-spo-group-member-add).
 
-The API endpoint which is used for the command `flow list` is also changed due to the deprecation of the older endpoint. With this change, property outputs like `displayName` will be changed to `properties/displayName`. You can get more details from [here](https://pnp.github.io/cli-microsoft365/v8-upgrade-guidance#adjusted-output-of-flow-list-command).
+The API endpoint which is used for the command [`m365 flow list`](https://pnp.github.io/cli-microsoft365/cmd/flow/flow-list/) is also changed due to the deprecation of the older endpoint. With this change, when you run the command `m365 flow list` as `--asAdmin` property outputs like `displayName` will be changed to `properties/displayName`. You can get more details from [here](https://pnp.github.io/cli-microsoft365/v8-upgrade-guidance#adjusted-output-of-flow-list-command).
 
 
 ### Configure CI/CD pipelines for SPFx projects
 
-We had released a new command for adding CI/CD configurations to your existing SPFx projects in our previous versions got [Azure DevOps](https://pnp.github.io/cli-microsoft365/cmd/spfx/project/project-azuredevops-pipeline-add/) and [GitHub Workflow](https://pnp.github.io/cli-microsoft365/cmd/spfx/project/project-github-workflow-add/). In this version, we also have added a readymade script in our docs so that the users can easily invoke the script which will generate the needed YAML file based on your parameter value, be it GitHub Workflows or Azure DevOps. This would help the users minimize  their effort to create the YAML file from scratch if they want to have a CI/CD pipeline enabled for their SPFx projects.  You can get more details from [here](https://pnp.github.io/cli-microsoft365/sample-scripts/spo/add-ci-cd-pipeline/).
+We released a new command for adding CI/CD configurations to your existing SPFx projects in our previous versions for [Azure DevOps](https://pnp.github.io/cli-microsoft365/cmd/spfx/project/project-azuredevops-pipeline-add/) and [GitHub Workflow](https://pnp.github.io/cli-microsoft365/cmd/spfx/project/project-github-workflow-add/). In this version, we also have added a readymade script in our docs so that the users can easily invoke the script which will generate the needed YAML file based on your parameter value, be it GitHub Workflows or Azure DevOps. This would help the users minimize  their effort to create the YAML file from scratch if they want to have a CI/CD pipeline enabled for their SPFx projects.  You can get more details from [here](https://pnp.github.io/cli-microsoft365/sample-scripts/spo/add-ci-cd-pipeline/).
 
 ### Content type field list command in SharePoint
 
@@ -55,12 +56,19 @@ Content types are a key feature in SharePoint that helps you to organize and man
 Now we have added a new command for listing the columns/fields associated with the site and the list content types
 
 For retrieving the fields associated with a site content type, run : 
-`m365 spo contenttype field list --webUrl https://contoso.sharepoint.com/sites/contoso-sales --contentTypeId "0x01"`
+
+```sh
+m365 spo contenttype field list --webUrl https://contoso.sharepoint.com/sites/contoso-sales --contentTypeId "0x01"
+```
+
 
 For retrieving the fields associated with a list content type in the Documents library, run : 
 `m365 spo contenttype field list --webUrl https://contoso.sharepoint.com/sites/contoso-sales --contentTypeName "Document" --listTitle "Documents"`
 
-You can get more details about the command from [here](https://pnp.github.io/cli-microsoft365/cmd/spo/contenttype/contenttype-field-list/)
+For more information, check the following resources:
+- [m365 spo contenttype field list](https://pnp.github.io/cli-microsoft365/cmd/spo/contenttype/contenttype-field-list/)
+
+
 
 
 ### Attendance report and message management in Microsoft Teams
